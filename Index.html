@@ -125,11 +125,11 @@
   <!-- All JavaScript inside the same file -->
   <script>
     // 1. Put your actual Supabase keys here
-    const SUPABASE_URL = 'https://dkzttmeqhwumreehswyq.supabase.co/rest/v1/'
+    const SUPABASE_URL = 'https://dkzttmeqhwumreehswyq.supabase.co'
     const SUPABASE_ANON_KEY = 'sb_publishable_wd8rN-1gYLze7fKdIcNb_g_lYiR0_JZ'
 
     // 2. Initialize Supabase
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
     // 3. Handle the form submission
     const signupForm = document.getElementById('signup-form')
@@ -151,7 +151,7 @@
       const reason = document.getElementById('reason').value
 
       // Insert directly into the signups table
-      const { data, error } = await supabase
+      const { data, error } = await supabaseClient
         .from('signups')
         .insert([
           {
