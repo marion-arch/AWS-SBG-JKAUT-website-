@@ -1,189 +1,1062 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empowering Students | AWS SBG JKUAT</title>
-    <style>
-        :root {
-            --primary: #232f3e;
-            --accent: #ff9900;
-            --light: #f8f9fa;
-            --dark: #333333;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-            border-bottom: 4px solid var(--accent);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            color: var(--accent);
-        }
-        header p {
-            font-size: 1.2rem;
-            margin-top: 0.5rem;
-            color: #d1d5db;
-        }
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-        .card {
-            background: white;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .card h2 {
-            color: var(--primary);
-            margin-top: 0;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 0.5rem;
-        }
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: var(--primary);
-            color: white;
-            margin-top: 3rem;
-            font-size: 0.9rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Student Builder Group — JKUAT</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #07090e;
+      --card-bg: #0e131f;
+      --card-border: #1e2638;
+      --text-white: #ffffff;
+      --text-muted: #94a3b8;
+      --text-body: #cbd5e1;
+      --aws-orange: #ff9900;
+      --border-color: #1a2233;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Sticky Navigation Bar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 2.5rem;
+      background: rgba(7, 9, 14, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: 0.5px;
+      justify-self: start;
+    }
+
+    /* Interlinked Cloud Logo */
+    .custom-cloud-logo {
+      width: 42px;
+      height: 30px;
+      filter: drop-shadow(0 0 8px rgba(255, 153, 0, 0.45)) drop-shadow(0 0 10px rgba(0, 164, 228, 0.35));
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .logo-area:hover .custom-cloud-logo {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 12px rgba(255, 153, 0, 0.7)) drop-shadow(0 0 14px rgba(0, 164, 228, 0.5));
+    }
+
+    /* Centered Nav Links */
+    nav.center-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    nav.center-nav a {
+      color: var(--text-white);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav.center-nav a:hover {
+      color: var(--aws-orange);
+    }
+
+    .nav-btn-wrapper {
+      justify-self: end;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #e66000 0%, #d95300 100%);
+      color: #ffffff !important;
+      padding: 0.65rem 1.6rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 14px rgba(217, 83, 0, 0.35);
+      text-decoration: none;
+      transition: transform 0.15s ease;
+      display: inline-block;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    /* 1. Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 1.5rem 6rem;
+      background-image: 
+        radial-gradient(circle at center, rgba(7, 9, 14, 0.68) 0%, rgba(7, 9, 14, 0.94) 85%),
+        url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2000&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.5rem 1.4rem;
+      border-radius: 9999px;
+      border: 1.5px solid var(--aws-orange);
+      background: rgba(7, 9, 14, 0.75);
+      color: var(--aws-orange);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      max-width: 950px;
+      margin: 0 auto 1.25rem;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero p.lead-desc {
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 750px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff8c00 0%, #d95300 100%);
+      color: #ffffff;
+      padding: 0.85rem 2.2rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(217, 83, 0, 0.4);
+      transition: transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: rgba(7, 9, 14, 0.6);
+      border: 1.5px solid var(--aws-orange);
+      color: #ffffff;
+      padding: 0.85rem 2.2rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 153, 0, 0.15);
+    }
+
+    /* 2. Mission Section */
+    .mission-section {
+      padding: 7rem 2rem;
+      background-color: #090c13;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .mission-container {
+      max-width: 1250px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 4.5rem;
+      align-items: center;
+    }
+
+    .mission-text h2 {
+      font-size: clamp(2.8rem, 4.5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 2rem;
+      line-height: 1.1;
+    }
+
+    .mission-text p {
+      font-size: 1.12rem;
+      line-height: 1.8;
+      color: var(--text-body);
+      max-width: 520px;
+    }
+
+    .mission-image-wrapper {
+      position: relative;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      background: #1e293b;
+    }
+
+    .mission-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    /* 3. Stats & Metrics Bar */
+    .stats-section {
+      padding: 5rem 2rem 3rem;
+      background-color: var(--bg-dark);
+    }
+
+    .stats-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      background: #0d1e27;
+      border: 1px solid #133948;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 0 16px rgba(0, 200, 255, 0.15);
+    }
+
+    .stat-number {
+      font-size: clamp(2.8rem, 4vw, 3.8rem);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Reusable Section Headers */
+    .section-container {
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: clamp(2.6rem, 4.5vw, 4rem);
+      font-weight: 900;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 3.5rem;
+      letter-spacing: -0.03em;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    /* 4. Community Benefits */
+    .benefits-section {
+      padding: 4rem 2rem 5rem;
+      background-color: var(--bg-dark);
+    }
+
+    .benefit-card {
+      background: #0e131f;
+      border: 1px solid #1e2638;
+      border-radius: 24px;
+      padding: 3rem 2rem 3.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 153, 0, 0.4);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .benefit-icon-badge {
+      width: 48px;
+      height: 48px;
+      background: #151d2c;
+      border: 1px solid #243147;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 2rem;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .benefit-card p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 320px;
+    }
+
+    /* 5. Core Architecture & Teams */
+    .arch-section {
+      padding: 4rem 2rem 5rem;
+      background-color: var(--bg-dark);
+    }
+
+    .arch-card {
+      background: #0e131f;
+      border: 1px solid #1e2638;
+      border-radius: 24px;
+      padding: 3rem 2.2rem 3.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .arch-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 153, 0, 0.4);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .arch-icon-tile {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(145deg, #ffffff 0%, #e2e8f0 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    }
+
+    .arch-card h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .arch-card p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 330px;
+    }
+
+    /* 6. Join the Hub Banner */
+    .cta-banner-section {
+      padding: 5rem 2rem 3rem;
+      background-color: var(--bg-dark);
+    }
+
+    .cta-banner-container {
+      max-width: 1250px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cta-banner-text h2 {
+      font-size: clamp(2.8rem, 4.5vw, 4rem);
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.85rem;
+    }
+
+    .cta-banner-text p {
+      font-size: 1.1rem;
+      color: var(--text-body);
+      max-width: 720px;
+      line-height: 1.7;
+    }
+
+    .cta-banner-btn {
+      background: linear-gradient(135deg, #e66000 0%, #d95300 100%);
+      color: #ffffff;
+      padding: 0.85rem 2.2rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 4px 15px rgba(217, 83, 0, 0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .cta-banner-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(217, 83, 0, 0.55);
+    }
+
+    /* 7. Community Meetups Gallery */
+    .meetups-section {
+      padding: 4rem 2rem 7rem;
+      background-color: var(--bg-dark);
+    }
+
+    .meetup-card {
+      position: relative;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: #111827;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .meetup-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .meetup-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* 8. Registration Form Section */
+    .form-wrapper {
+      max-width: 650px;
+      margin: 2rem auto 6rem;
+      padding: 0 1.5rem;
+    }
+
+    .form-card {
+      background: #111827;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .form-card h2 {
+      color: var(--aws-orange);
+      font-size: 1.85rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-card p.subtitle {
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: -0.5rem;
+    }
+
+    input, select, textarea {
+      background: #0b1120;
+      border: 1px solid var(--border-color);
+      color: #ffffff;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--aws-orange);
+    }
+
+    button.submit-btn {
+      margin-top: 0.5rem;
+      background: linear-gradient(135deg, #ff9900 0%, #e66000 100%);
+      color: #111827;
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 0.95rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: filter 0.2s, transform 0.1s;
+    }
+
+    button.submit-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    #status-msg {
+      text-align: center;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    /* 9. Rich Footer (Exact match to Wix screenshot) */
+    footer.site-footer {
+      background-color: #05070a;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 5rem 2.5rem 4rem;
+      color: var(--text-muted);
+    }
+
+    .footer-container {
+      max-width: 1250px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 3.5rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .footer-logo-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .footer-brand-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin-top: -0.25rem;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    /* Social Media Icons Bar */
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: bold;
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.2);
+    }
+
+    .btn-fb { background-color: #1877f2; }
+    .btn-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285aeb 90%); }
+    .btn-yt { background-color: #ff0000; }
+    .btn-x { background-color: #111827; border: 1px solid #334155; }
+    .btn-in { background-color: #0077b5; }
+    .btn-tk { background-color: #000000; border: 1px solid #334155; }
+
+    /* Footer Navigation Columns */
+    .footer-col h3 {
+      color: #ffffff;
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .footer-col ul li a {
+      color: var(--text-body);
+      text-decoration: none;
+      font-size: 0.98rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--aws-orange);
+    }
+
+    /* Contact Info Column */
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+      color: var(--text-body);
+    }
+
+    .contact-item a {
+      color: var(--text-body);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover {
+      color: var(--aws-orange);
+    }
+
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .mission-container { grid-template-columns: 1fr; gap: 3rem; }
+      .cta-banner-container { flex-direction: column; text-align: center; }
+      .footer-container { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 1rem 1.25rem; }
+      nav.center-nav { display: none; }
+      .form-card { padding: 1.75rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .footer-container { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Empowering Students</h1>
-        <p>AWS Student Builders Group (SBG) — JKUAT</p>
-    </header>
+  <!-- Sticky Top Header Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#hero" class="logo-area">
+        <!-- Dual Loop Orange & Cyan Cloud Logo -->
+        <svg class="custom-cloud-logo" viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 22C11 22 7 20 7 15C7 10 11 8 16 8C17.5 4 21.5 2 26.5 2C32 2 36 5.5 37.5 10C42 10.5 45.5 13.5 45.5 18C45.5 22.5 42 25.5 37 25.5" 
+                stroke="#FF9900" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M38 14C41 14 45 16 45 21C45 26 41 28 36 28C34.5 32 30.5 34 25.5 34C20 34 16 30.5 14.5 26C10 25.5 6.5 22.5 6.5 18C6.5 13.5 10 10.5 15 10.5" 
+                stroke="#00A4E4" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>AWS SBG</span>
+      </a>
 
-    <div class="container">
-        <div class="card">
-            <h2>Welcome to Our Mission</h2>
-            <p>This repository and platform host resources, documentation, and technical projects dedicated to uplifting and empowering students through cloud computing, peer collaboration, and technical skill development.</p>
-        </div>
+      <!-- Centered Menu Links -->
+      <nav class="center-nav">
+        <a href="#hero">Home</a>
+        <a href="#mission">About Us</a>
+        <a href="#register">Contact</a>
+      </nav>
 
-        <div class="card">
-            <h2>What We Do</h2>
-            <ul>
-                <li><strong>Cloud Training:</strong> Hands-on experience with AWS infrastructure and modern web tools.</li>
-                <li><strong>Collaborative Projects:</strong> Building real-world solutions to solve everyday student and community challenges.</li>
-                <li><strong>Peer Growth:</strong> Cultivating a supportive environment for tech enthusiasts at Jomo Kenyatta University of Agriculture and Technology.</li>
-            </ul>
-        </div>
-        <section class="card" style="margin-top: 2rem;">
-  <h2>Join AWS SBG JKUAT</h2>
-  <form id="signup-form">
-    <label>Full Name *</label>
-    <input type="text" id="full_name" required placeholder="Jane Doe" />
-
-    <label>Email Address *</label>
-    <input type="email" id="email" required placeholder="janedoe@gmail.com" />
-
-    <label>Phone Number</label>
-    <input type="tel" id="phone" placeholder="+254..." />
-
-    <label>Course</label>
-    <input type="text" id="course" placeholder="BSc Computer Technology" />
-
-    <label>Year of Study</label>
-    <select id="year_of_study">
-      <option value="">Select Year</option>
-      <option value="Year 1">Year 1</option>
-      <option value="Year 2">Year 2</option>
-      <option value="Year 3">Year 3</option>
-      <option value="Year 4">Year 4</option>
-    </select>
-
-    <label>Why do you want to join?</label>
-    <textarea id="reason" rows="3" placeholder="Tell us your motivation..."></textarea>
-
-    <button type="submit" id="submit-btn" style="background:#FF9900; color:#111; font-weight:bold; padding:10px; border:none; cursor:pointer; margin-top:10px;">
-      Submit Registration
-    </button>
-  </form>
-  <p id="status-msg"></p>
-</section>
+      <!-- Right Aligned Button -->
+      <div class="nav-btn-wrapper">
+        <a href="#register" class="nav-btn">Join the Hub</a>
+      </div>
     </div>
-    <h2>Club / Community Signup Form</h2>
+  </header>
 
-  <form id="signup-form">
-    <label>Full Name *</label>
-    <input type="text" id="full_name" required placeholder="e.g. Jane Doe" />
+  <!-- 1. Hero Section -->
+  <section class="hero" id="hero">
+    <a href="#register" class="badge-pill">
+      AWS Student Builder Group <span>↗</span>
+    </a>
 
-    <label>Email Address *</label>
-    <input type="email" id="email" required placeholder="e.g. janedoe@gmail.com" />
+    <h1>Empowering Students Through Cloud Computing</h1>
 
-    <label>Phone Number</label>
-    <input type="tel" id="phone" placeholder="e.g. +254..." />
+    <p class="lead-desc">
+      We are a student-focused tech hub that helps you learn how to build modern websites and apps. We guide you step by step so you can gain real cloud skills and apply them to real projects.
+    </p>
 
-    <label>Course</label>
-    <input type="text" id="course" placeholder="e.g. BSc Computer Technology" />
+    <div class="hero-actions">
+      <a href="#register" class="btn-primary">Join the Community</a>
+      <a href="#mission" class="btn-outline">Our Mission</a>
+    </div>
+  </section>
 
-    <label>Year of Study</label>
-    <select id="year_of_study">
-      <option value="">Select Year</option>
-      <option value="Year 1">Year 1</option>
-      <option value="Year 2">Year 2</option>
-      <option value="Year 3">Year 3</option>
-      <option value="Year 4">Year 4</option>
-      <option value="Year 5">Year 5</option>
-    </select>
+  <!-- 2. Our Mission Section -->
+  <section class="mission-section" id="mission">
+    <div class="mission-container">
+      <div class="mission-text">
+        <h2>Our Mission</h2>
+        <p>
+          We use modern tech to create a space where students can work together and grow. Our goal is to make advanced tools easy to use so every student can learn, build new things, and succeed in the digital world. We provide everything you need to become a tech leader while being part of a supportive group.
+        </p>
+      </div>
 
-    <label>Why do you want to join?</label>
-    <textarea id="reason" rows="3" placeholder="Tell us your motivation..."></textarea>
+      <div class="mission-image-wrapper">
+        <img 
+          src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80" 
+          alt="Students collaborating on cloud computing" 
+        />
+      </div>
+    </div>
+  </section>
 
-    <button type="submit" id="submit-btn">Submit Registration</button>
-  </form>
+  <!-- 3. Stats & Impact Metrics Section -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-number">240</div>
+        <div class="stat-label">Active Members</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Events Hosted</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🎖️</div>
+        <div class="stat-number">128</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⚙️</div>
+        <div class="stat-number">6</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+    </div>
+  </section>
 
-  <p id="status-msg"></p>
+  <!-- 4. Community Benefits Section -->
+  <section class="benefits-section" id="benefits">
+    <div class="section-container">
+      <h2 class="section-title">Community Benefits</h2>
 
-  <!-- Supabase Library CDN -->
+      <div class="cards-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon-badge">☁️</div>
+          <h3>Cloud Access</h3>
+          <p>Gain hands-on experience with distributed systems and scalable infrastructure.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-badge">🌐</div>
+          <h3>Collaborative Hubs</h3>
+          <p>Connect with peers in local student tech centers to build agile infrastructure together.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-badge">📈</div>
+          <h3>Expert Mentorship</h3>
+          <p>Access specialized guidance to master distributed computing and cloud security.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Our Core Architecture & Teams Section -->
+  <section class="arch-section" id="teams">
+    <div class="section-container">
+      <h2 class="section-title">Our Core Architecture & Teams</h2>
+
+      <div class="cards-grid">
+        <div class="arch-card">
+          <div class="arch-icon-tile">☁️</div>
+          <h3>UI/UX & Content Team<br>(Powered by Amazon S3 & CloudFront)</h3>
+          <p>Responsible for the visual identity and delivery speed of our digital platforms, ensuring low latency and high availability.</p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-icon-tile">🗄️</div>
+          <h3>Core Backend & Marketing<br>(Powered by AWS Lambda & Database)</h3>
+          <p>Manages serverless compute operations and data-driven marketing campaigns to reach students effectively.</p>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-icon-tile">🛡️</div>
+          <h3>Security & Infrastructure<br>(Powered by Amazon Cognito & Route 53)</h3>
+          <p>Oversees identity management, domain routing, and overall system security architectures for the hub.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Join the Hub CTA Banner -->
+  <section class="cta-banner-section">
+    <div class="cta-banner-container">
+      <div class="cta-banner-text">
+        <h2>Join the Hub</h2>
+        <p>Empower your next project. We invite students and individuals to collaborate, learn, and innovate together in our distributed systems community.</p>
+      </div>
+      <a href="#register" class="cta-banner-btn">Join the Hub</a>
+    </div>
+  </section>
+
+  <!-- 7. Community Meetups Gallery -->
+  <section class="meetups-section" id="meetups">
+    <div class="section-container">
+      <h2 class="section-title">Community Meetups</h2>
+
+      <div class="cards-grid">
+        <div class="meetup-card">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Students in discussion" />
+        </div>
+        <div class="meetup-card">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Student workshop speaker" />
+        </div>
+        <div class="meetup-card">
+          <img src="https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&w=800&q=80" alt="Students collaborating on projects" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Registration Form Section -->
+  <div class="form-wrapper" id="register">
+    <div class="form-card">
+      <h2>Join the Hub</h2>
+      <p class="subtitle">Complete your details to register with the AWS Student Builders Group.</p>
+
+      <form id="signup-form">
+        <label for="full_name">Full Name *</label>
+        <input type="text" id="full_name" required placeholder="e.g. Jane Doe" />
+
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" required placeholder="e.g. janedoe@students.jkuat.ac.ke" />
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="e.g. +254 700 000000" />
+
+        <label for="course">Course of Study</label>
+        <input type="text" id="course" placeholder="e.g. BSc Computer Technology" />
+
+        <label for="year_of_study">Year of Study</label>
+        <select id="year_of_study">
+          <option value="">Select Year</option>
+          <option value="Year 1">Year 1</option>
+          <option value="Year 2">Year 2</option>
+          <option value="Year 3">Year 3</option>
+          <option value="Year 4">Year 4</option>
+          <option value="Year 5">Year 5</option>
+        </select>
+
+        <label for="reason">Why do you want to join?</label>
+        <textarea id="reason" rows="3" placeholder="Tell us about your learning goals..."></textarea>
+
+        <button type="submit" id="submit-btn" class="submit-btn">Submit Registration</button>
+      </form>
+
+      <p id="status-msg"></p>
+    </div>
+  </div>
+
+  <!-- 9. Rich Footer matching Wix -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <!-- Column 1: Brand & Socials -->
+      <div class="footer-brand">
+        <div class="footer-logo-header">
+          <svg class="custom-cloud-logo" viewBox="0 0 52 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 22px;">
+            <path d="M14 22C11 22 7 20 7 15C7 10 11 8 16 8C17.5 4 21.5 2 26.5 2C32 2 36 5.5 37.5 10C42 10.5 45.5 13.5 45.5 18C45.5 22.5 42 25.5 37 25.5" 
+                  stroke="#FF9900" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M38 14C41 14 45 16 45 21C45 26 41 28 36 28C34.5 32 30.5 34 25.5 34C20 34 16 30.5 14.5 26C10 25.5 6.5 22.5 6.5 18C6.5 13.5 10 10.5 15 10.5" 
+                  stroke="#00A4E4" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>AWS SBG</span>
+        </div>
+
+        <div class="footer-brand-title">AWS SBG</div>
+        
+        <p>Empowering students through cloud computing education and collaborative innovation.</p>
+
+        <!-- Social Media Icon Buttons -->
+        <div class="social-icons">
+          <a href="#" class="social-btn btn-fb" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn btn-ig" aria-label="Instagram">📸</a>
+          <a href="#" class="social-btn btn-yt" aria-label="YouTube">▶</a>
+          <a href="#" class="social-btn btn-x" aria-label="X">𝕏</a>
+          <a href="#" class="social-btn btn-in" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-btn btn-tk" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+
+      <!-- Column 2: Community Links -->
+      <div class="footer-col">
+        <h3>Community</h3>
+        <ul>
+          <li><a href="#mission">About Us</a></li>
+          <li><a href="#register">Join the Club</a></li>
+          <li><a href="#meetups">Events & Workshops</a></li>
+          <li><a href="#meetups">Photo Gallery</a></li>
+          <li><a href="#register">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Resources Links -->
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#">Learning Roadmap</a></li>
+          <li><a href="#">Project Gallery</a></li>
+          <li><a href="#">Blog & Tutorials</a></li>
+          <li><a href="https://aws.amazon.com/education/awseducate/" target="_blank">AWS Educate</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact Info -->
+      <div class="footer-col">
+        <h3>Contact Info</h3>
+        <div class="contact-item">
+          <span>📍</span>
+          <span>Local student tech centers</span>
+        </div>
+        <div class="contact-item">
+          <span>✉️</span>
+          <a href="mailto:hello@cloudstudenthub.com">hello@cloudstudenthub.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase Library & Form Submission Script -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- All JavaScript inside the same file -->
   <script>
-    // 1. Put your actual Supabase keys here
-    const SUPABASE_URL = 'https://dkzttmeqhwumreehswyq.supabase.co'
-    const SUPABASE_ANON_KEY = 'sb_publishable_wd8rN-1gYLze7fKdIcNb_g_lYiR0_JZ'
+    // Paste your Supabase credentials here:
+    const SUPABASE_URL = 'https://dkzttmeqhwumreehswyq.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_wd8rN-1gYLze7fKdIcNb_g_lYiR0_JZ';
 
-    // 2. Initialize Supabase
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // 3. Handle the form submission
-    const signupForm = document.getElementById('signup-form')
-    const statusMsg = document.getElementById('status-msg')
-    const submitBtn = document.getElementById('submit-btn')
+    const signupForm = document.getElementById('signup-form');
+    const statusMsg = document.getElementById('status-msg');
+    const submitBtn = document.getElementById('submit-btn');
 
     signupForm.addEventListener('submit', async (e) => {
-      e.preventDefault()
+      e.preventDefault();
 
-      submitBtn.disabled = true
-      submitBtn.innerText = 'Submitting...'
-      statusMsg.innerText = ''
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Submitting...';
+      statusMsg.innerText = '';
 
-      const full_name = document.getElementById('full_name').value
-      const email = document.getElementById('email').value
-      const phone = document.getElementById('phone').value
-      const course = document.getElementById('course').value
-      const year_of_study = document.getElementById('year_of_study').value
-      const reason = document.getElementById('reason').value
+      const full_name = document.getElementById('full_name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const course = document.getElementById('course').value;
+      const year_of_study = document.getElementById('year_of_study').value;
+      const reason = document.getElementById('reason').value;
 
-      // Insert directly into the signups table
       const { data, error } = await supabaseClient
         .from('signups')
         .insert([
@@ -195,26 +1068,21 @@
             year_of_study: year_of_study,
             reason: reason
           }
-        ])
+        ]);
 
       if (error) {
-        console.error('Submission error:', error)
-        statusMsg.style.color = 'red'
-        statusMsg.innerText = 'Error: ' + error.message
+        console.error('Submission error:', error);
+        statusMsg.style.color = '#ef4444';
+        statusMsg.innerText = 'Error submitting: ' + error.message;
       } else {
-        statusMsg.style.color = 'green'
-        statusMsg.innerText = 'Success! Your signup was saved.'
-        signupForm.reset()
+        statusMsg.style.color = '#22c55e';
+        statusMsg.innerText = 'Success! Welcome to the group.';
+        signupForm.reset();
       }
 
-      submitBtn.disabled = false
-      submitBtn.innerText = 'Submit Registration'
-    })
+      submitBtn.disabled = false;
+      submitBtn.innerText = 'Submit Registration';
+    });
   </script>
-
-    <footer>
-        <p>&copy; 2026 Empowering Students | JKUAT AWS Student Builders Group</p>
-    </footer>
-
 </body>
 </html>
